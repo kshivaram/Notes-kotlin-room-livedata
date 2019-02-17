@@ -1,4 +1,4 @@
-package database
+package com.example.notes.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase

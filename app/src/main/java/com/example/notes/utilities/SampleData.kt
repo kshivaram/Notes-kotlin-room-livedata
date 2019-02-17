@@ -1,6 +1,6 @@
-package utilities
+package com.example.notes.utilities
 
-import database.NoteEntity
+import com.example.notes.database.NoteEntity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -14,9 +14,9 @@ object SampleData {
     fun getNotes(): List<NoteEntity> {
 
         val notesList = ArrayList<NoteEntity>()
-        notesList.add(NoteEntity(1, "First Note"))
-        notesList.add(NoteEntity(2, "Second Note"))
-        notesList.add(NoteEntity(3,  "Third Note"))
+        notesList.add(NoteEntity(id = 1, text = "First Note"))
+        notesList.add(NoteEntity(id = 2, text = "Second Note"))
+        notesList.add(NoteEntity(id = 3, text =  "Third Note"))
 
         return notesList
     }

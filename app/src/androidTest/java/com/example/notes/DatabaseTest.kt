@@ -4,14 +4,13 @@ import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import android.util.Log
-import database.AppDatabase
-import database.NoteDAO
-import database.NoteEntity
+import com.example.notes.database.AppDatabase
+import com.example.notes.database.NoteDAO
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import utilities.SampleData
+import com.example.notes.utilities.SampleData
 import org.junit.Assert.*
 
 
@@ -28,13 +27,13 @@ class DatabaseTest {
         mdatabase = Room.inMemoryDatabaseBuilder(context,
                     AppDatabase::class.java).build()
         noteDAO = mdatabase!!.notesDao()
-        Log.e(TAG, "Created database")
+        Log.e(TAG, "Created com.example.notes.database")
     }
 
     @After
     fun closeDb(){
         mdatabase!!.close()
-        Log.e(TAG, "Closed database")
+        Log.e(TAG, "Closed com.example.notes.database")
 
     }
     @Test
