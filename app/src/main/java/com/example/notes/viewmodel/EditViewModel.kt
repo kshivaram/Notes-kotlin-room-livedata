@@ -46,5 +46,4 @@ class EditViewModel(application: Application): AndroidViewModel(application) {
             }
         }
     }
-
 }

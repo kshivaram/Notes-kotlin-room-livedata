@@ -13,7 +13,6 @@ import java.util.concurrent.Executors
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    //val mNotes = MutableLiveData<List<NoteEntity>>()
     private var mDatabase: AppDatabase? = AppDatabase.getInstance(application.applicationContext)
 
     private val executor: Executor = Executors.newSingleThreadExecutor()
@@ -35,12 +34,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getAllNotes() :LiveData<List<NoteEntity>>{
-       /* executor.execute {
-            run {
-                val notes = mDatabase!!.notesDao().loadAllNotes()
-                mNotes.postValue(notes)
-            }
-        }*/
         return mDatabase!!.notesDao().loadAllNotes()
     }
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -21,6 +22,7 @@ class EditNoteActivity : AppCompatActivity() {
     private var mEditActivityBinding: ActivityEditNoteBinding? = null
     private var mNewNote: Boolean = false
     private var mEditText: EditText? = null
+    private var mEditing :Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,10 @@ class EditNoteActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mEditText = mEditActivityBinding!!.contentMain.editText
+
+        if (savedInstanceState != null) {
+            mEditing = savedInstanceState.getBoolean("Editing_key")
+        }
         initViewModel()
         displayTextViewFromIntentOrNewText()
     }
@@ -51,7 +57,7 @@ class EditNoteActivity : AppCompatActivity() {
 
         mEditViewModel = ViewModelProviders.of(this).get(EditViewModel::class.java)
         mEditViewModel!!.mLiveNote.observe(this, Observer { data ->
-            if (data != null)
+            if (data != null && mEditing != true )
                 mEditText!!.setText(data.text)
         })
     }
@@ -97,5 +103,10 @@ class EditNoteActivity : AppCompatActivity() {
     private fun deleteNote() {
         mEditViewModel!!.deleteNote()
         finish()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("Editing_key", true)
+        super.onSaveInstanceState(outState)
     }
 }
