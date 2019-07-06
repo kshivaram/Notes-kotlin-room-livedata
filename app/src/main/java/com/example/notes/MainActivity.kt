@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
         mViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mViewModel!!.getAllNotes().observe(this, notesObserver)
-
     }
 
     override fun onPause() {
